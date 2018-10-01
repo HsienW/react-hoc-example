@@ -1,8 +1,8 @@
 import React from 'react';
 import CountHOC from '../Decorators/CountHOC';
-import ButtonComponent from '../Components/ButtonComponent';
+import ButtonComp from '../Components/ButtonComp';
 
-const IncrementCount = CountHOC(ButtonComponent);
+const IncrementCount = CountHOC(ButtonComp);
 
 export default class ShoppingView extends React.Component {
     render() {

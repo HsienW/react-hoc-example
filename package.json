@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --devtool eval --progress --watch --hot --mode production"
+    "start": "webpack-dev-server --devtool eval --progress --watch --hot --mode development"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
