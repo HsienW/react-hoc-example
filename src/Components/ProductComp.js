@@ -20,7 +20,7 @@ export default class ProductComp extends React.Component {
     // 驗證身分
     userAuthCheck = () => {
         const userToken = localStorage.getItem('token');
-        if (userToken !== '') {
+        if (userToken !== null) {
             this.setState({authPass: true});
             this.submitOrder(userToken);
         } else {
