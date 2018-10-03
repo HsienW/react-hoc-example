@@ -10,6 +10,7 @@ const UserAuthHOC = (WrappedComponent) => {
         }
 
         componentDidMount() {
+            console.log('驗證身分');
             const userToken = localStorage.getItem('token');
             if (userToken !== null) {
                 this.setState({authPass: true});
