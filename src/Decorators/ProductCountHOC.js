@@ -1,5 +1,6 @@
 import React from 'react';
 
+//負責計算商品數量的 HOC
 const ProductCountHOC = (WrappedComponent) => {
     return class productCountHOC extends React.Component {
         constructor() {

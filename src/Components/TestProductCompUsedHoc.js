@@ -1,11 +1,7 @@
 import React from 'react';
-import UserAuthHOC from '../Decorators/UserAuthHOC';
-import ProductCountHOC from '../Decorators/ProductCountHOC';
-import SubmitOrderHOC from '../Decorators/SubmitOrderHOC';
+import SubmitOrderHOCTest from '../Decorators/SubmitOrderHOCTest';
 
-@UserAuthHOC
-@ProductCountHOC
-@SubmitOrderHOC
+@SubmitOrderHOCTest('aa123456', 'pppppp')
 export default class ProductCompUsedHoc extends React.Component {
     render() {
         const props = {...this.props};
