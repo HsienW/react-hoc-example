@@ -4,11 +4,7 @@ const HOC = (WrappedComponent) => {
     return class simpleHOC extends React.Component {
         constructor() {
             super();
-            this.state = {say: ''}
-        }
-
-        componentDidMount() {
-            this.setState({say: 'good morning'});
+            this.state = {say: 'good morning'}
         }
 
         render() {
