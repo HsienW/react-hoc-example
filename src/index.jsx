@@ -1,6 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import SwitchCountView from './Containers/SwitchCountView';
-import App from './App.jsx';
+import SimpleHOC from './Example/SimpleHOC';
+import GenderHOC from './Example/GenderHOC';
+import CombinationHOC from './Example/CombinationHOC';
+import UsedDecoratorHOC from './Example/UsedDecoratorHOC';
+import ShoppingSite from './Example/ShoppingSite';
+import ShoppingSiteUsedHOC from './Example/ShoppingSiteUsedHOC';
+import CallApiHOC from './Example/CallApiHOC';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+ReactDOM.render(
+    <div>
+        <SimpleHOC />
+        <GenderHOC />
+        <CombinationHOC />
+        <UsedDecoratorHOC />
+        <ShoppingSite />
+        <ShoppingSiteUsedHOC />
+        <CallApiHOC />
+    </div>, document.getElementById('root'));

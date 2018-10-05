@@ -1,19 +1,27 @@
-import React from 'react';
-import Login from '../Containers/LoginView';
+import React, {Component} from 'react';
 
-export default class ProductComp extends React.Component {
+// 登入畫面
+class Login extends Component {
+    render() {
+        return (
+            <div>
+                Login
+            </div>
+        );
+    }
+}
+
+// 以水果類當例子
+export default class FruitsProduct extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            authPass: true,
-            count: 1,
-        };
+        this.state = {userToken: '', authPass: true, count: 1};
     }
     // 驗證身分
     componentDidMount() {
-        const userToken = localStorage.getItem('token');
-        if (userToken !== null) {
-            this.setState({authPass: true});
+        const token = localStorage.getItem('token');
+        if (token !== null) {
+            this.setState({authPass: true, userToken: token});
         } else {
             this.setState({authPass: false});
         }
@@ -27,15 +35,15 @@ export default class ProductComp extends React.Component {
         this.setState({count: this.state.count - 1});
     };
     // 送出訂單
-    submitOrder = (token) => {
+    submitOrder = () => {
         let request = {
-            body: JSON.stringify({token: token, product: {id: this.props.id, number: this.state.count}}),
+            body: JSON.stringify({token: this.state.userToken, product: {number: this.state.count}}),
             method: 'POST',
             headers: new Headers(),
             mode: 'cors',
             cache: 'default'
         };
-        fetch('https://productURL/ABC123456', request)
+        fetch('https://productURL/Fruits01', request)
             .then((respond) => {this.props.sendSuccessAction(respond);}) // 送出訂購成功的 action
             .catch((error) => {return error});
     };
@@ -46,8 +54,6 @@ export default class ProductComp extends React.Component {
         return (
             <div>
                 <div>Name: {props.name}</div>
-                <div>Image: {props.image}</div>
-                <div>Content: {props.content}</div>
                 <div>Number: {this.state.count}
                     <button onClick={this.addProduct}>+</button>
                     <button onClick={this.lessProduct}>-</button>
