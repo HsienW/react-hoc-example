@@ -49,11 +49,11 @@ export default class FruitsProduct extends Component {
     };
 
     render() {
-        const props = {...this.props};
+        const {name} = this.props;
         if (!this.state.authPass) {return (<Login/>);} // 驗證不通過 回登入頁面
         return (
             <div>
-                <div>Name: {props.name}</div>
+                <div>Name: {name}</div>
                 <div>Number: {this.state.count}
                     <button onClick={this.addProduct}>+</button>
                     <button onClick={this.lessProduct}>-</button>

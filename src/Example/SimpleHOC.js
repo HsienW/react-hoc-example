@@ -16,8 +16,8 @@ const HOC = (WrappedComponent) => {
 // 要傳入的元件
 class SimpleComp extends Component {
     render() {
-        const props = {...this.props};
-        return (<div>Johnny {props.say}</div>); // Johnny good morning
+        const {say} = this.props;
+        return (<div>Johnny {say}</div>); // Johnny good morning
     }
 }
 // 使用掛入完的元件

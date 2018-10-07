@@ -88,15 +88,15 @@ const SubmitOrderHOC = (WrappedComponent) => {
 @UserAuthHOC
 class FruitProduct extends Component {
     render() {
-        const props = {...this.props};
+        const {name, count, addProduct, lessProduct, submitOrder} = this.props;
         return (
             <div>
-                <div>Name: {props.name}</div>
-                <div>Number: {props.count}
-                    <button onClick={props.addProduct}>+</button>
-                    <button onClick={props.lessProduct}>-</button>
+                <div>Name: {name}</div>
+                <div>Number: {count}
+                    <button onClick={addProduct}>+</button>
+                    <button onClick={lessProduct}>-</button>
                 </div>
-                <button onClick={props.submitOrder}>Submit</button>
+                <button onClick={submitOrder}>Submit</button>
             </div>
         );
     }
@@ -108,15 +108,16 @@ class FruitProduct extends Component {
 @UserAuthHOC
 class TeaProduct extends Component {
     render() {
-        const props = {...this.props};
+        const {name, count, addProduct, lessProduct, submitOrder} = this.props;
         return (
             <div>
-                <div>Name: {props.name}</div>
-                <div>Number: {props.count}
-                    <button onClick={props.addProduct}>+</button>
-                    <button onClick={props.lessProduct}>-</button>
+                <div>
+                    <span>Name: {name}</span>
+                    <span>Number: {count}</span>
+                    <button onClick={addProduct}>+</button>
+                    <button onClick={lessProduct}>-</button>
                 </div>
-                <button onClick={props.submitOrder}>Submit</button>
+                <button onClick={submitOrder}>Submit</button>
             </div>
         );
     }
@@ -127,15 +128,16 @@ class TeaProduct extends Component {
 @UserAuthHOC
 class CandyProduct extends Component {
     render() {
-        const props = {...this.props};
+        const {name, count, addProduct, lessProduct, submitOrder} = this.props;
         return (
             <div>
-                <div>Name: {props.name}</div>
-                <div>Number: {props.count}
-                    <button onClick={props.addProduct}>+</button>
-                    <button onClick={props.lessProduct}>-</button>
+                <div>
+                    <span style={{color: 'red'}}>Name: {name}</span>
+                    <h4>Number: {count}</h4>
+                    <button onClick={addProduct}>+</button>
+                    <button onClick={lessProduct}>-</button>
                 </div>
-                <button onClick={props.submitOrder}>Submit</button>
+                <button onClick={submitOrder}>Submit</button>
             </div>
         );
     }
