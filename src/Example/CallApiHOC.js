@@ -25,10 +25,10 @@ const CallApiHOC = (method, url, requestBody) => (WrappedComponent) => {
 @CallApiHOC('post', 'https://productURL/Tea01', {product: {example: 'example'}}) // 無法動態的修改參數
 class ProductComp extends Component {
     render() {
-        const props = {...this.props};
+        const {submitOrder} = this.props;
         return (
             <div>
-                <button onClick={props.submitOrder}>Submit</button>
+                <button onClick={submitOrder}>Submit</button>
             </div>
         );
     }

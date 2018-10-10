@@ -31,8 +31,10 @@ const UserAuthHOC = (WrappedComponent) => {
         }
 
         render() {
-            if (!this.state.authPass) {return (<Login/>);} // 驗證不通過 回登入頁面
-            return <WrappedComponent {...this.state} {...this.props} token={this.state.userToken} />
+            if (!this.state.authPass) {
+                return (<Login/>);
+            } // 驗證不通過 回登入頁面
+            return <WrappedComponent {...this.state} {...this.props} token={this.state.userToken}/>
         }
     }
 };
@@ -50,12 +52,15 @@ const ProductCountHOC = (WrappedComponent) => {
         };
 
         lessProduct = () => {
-            if (this.state.count === 1) {return;} // 最小商品數為1
+            if (this.state.count === 1) {
+                return;
+            } // 最小商品數為1
             this.setState({count: this.state.count - 1});
         };
 
         render() {
-            return <WrappedComponent{...this.state} {...this.props} addProduct={this.addProduct} lessProduct={this.lessProduct}/>
+            return <WrappedComponent{...this.state} {...this.props} addProduct={this.addProduct}
+                                    lessProduct={this.lessProduct}/>
         }
     }
 };
@@ -73,8 +78,12 @@ const SubmitOrderHOC = (WrappedComponent) => {
                 cache: 'default'
             };
             fetch(`https://productURL/+${this.props.id}`, request)
-                .then((respond) => {this.props.sendSuccessAction(respond);}) // 送出訂購成功的 action
-                .catch((error) => {return error});
+                .then((respond) => {
+                    this.props.sendSuccessAction(respond);
+                }) // 送出訂購成功的 action
+                .catch((error) => {
+                    return error
+                });
         };
 
         render() {
@@ -82,21 +91,22 @@ const SubmitOrderHOC = (WrappedComponent) => {
         }
     }
 };
+
 // 添加水果類元件
 @ProductCountHOC
 @SubmitOrderHOC
 @UserAuthHOC
 class FruitProduct extends Component {
     render() {
-        const props = {...this.props};
+        const {name, count, addProduct, lessProduct, submitOrder} = this.props;
         return (
             <div>
-                <div>Name: {props.name}</div>
-                <div>Number: {props.count}
-                    <button onClick={props.addProduct}>+</button>
-                    <button onClick={props.lessProduct}>-</button>
+                <div>Name: {name}</div>
+                <div>Number: {count}
+                    <button onClick={addProduct}>+</button>
+                    <button onClick={lessProduct}>-</button>
                 </div>
-                <button onClick={props.submitOrder}>Submit</button>
+                <button onClick={submitOrder}>Submit</button>
             </div>
         );
     }
@@ -108,49 +118,98 @@ class FruitProduct extends Component {
 @UserAuthHOC
 class TeaProduct extends Component {
     render() {
-        const props = {...this.props};
+        const {name, count, addProduct, lessProduct, submitOrder} = this.props;
         return (
             <div>
-                <div>Name: {props.name}</div>
-                <div>Number: {props.count}
-                    <button onClick={props.addProduct}>+</button>
-                    <button onClick={props.lessProduct}>-</button>
+                <div>
+                    <span>Name: {name}</span>
+                    <span>Number: {count}</span>
+                    <button onClick={addProduct}>+</button>
+                    <button onClick={lessProduct}>-</button>
                 </div>
-                <button onClick={props.submitOrder}>Submit</button>
+                <button onClick={submitOrder}>Submit</button>
             </div>
         );
     }
 }
+
 // 添加糖果類元件
 @ProductCountHOC
 @SubmitOrderHOC
 @UserAuthHOC
 class CandyProduct extends Component {
     render() {
-        const props = {...this.props};
+        const {name, count, addProduct, lessProduct, submitOrder} = this.props;
         return (
             <div>
-                <div>Name: {props.name}</div>
-                <div>Number: {props.count}
-                    <button onClick={props.addProduct}>+</button>
-                    <button onClick={props.lessProduct}>-</button>
+                <div>
+                    <span style={{color: 'red'}}>Name: {name}</span>
+                    <h4>Number: {count}</h4>
+                    <button onClick={addProduct}>+</button>
+                    <button onClick={lessProduct}>-</button>
                 </div>
-                <button onClick={props.submitOrder}>Submit</button>
+                <button onClick={submitOrder}>Submit</button>
             </div>
         );
     }
 }
 
-class ProductPage extends Component {
+const A = [{name: '1'}, {name: '2'}, {name: '3'}];
+const B = [{name: '4'}, {name: '5'}, {name: '6'}];
+
+class Test extends Component {
     render() {
+        const {name, count, addProduct, lessProduct, submitOrder} = this.props;
         return (
             <div>
-                <FruitProduct id={'Fruit01'} name={'Fruit'} />
-                <TeaProduct id={'Tea01'} name={'Tea'} />
-                <CandyProduct id={'Candy01'} name={'Candy'} />
+                <div>
+                    <span>Name: {name}</span>
+                    <h4>Number: {count}</h4>
+                    <button onClick={addProduct}>+</button>
+                    <button onClick={lessProduct}>-</button>
+                </div>
+                <button onClick={submitOrder}>Submit</button>
             </div>
         );
     }
 }
+
+
+class ProductPage extends Component {
+    render() {
+        return (
+            <div>
+                {
+                    A.map((item) => {
+                        return (
+                            <Test name={item.name}/>
+                        );
+                    })
+                }
+                <br/>
+                {
+                    B.map((item) => {
+                        return (
+                            <Test name={item.name}/>
+                        );
+                    })
+                }
+            </div>
+        );
+    }
+}
+
+
+// class ProductPage extends Component {
+//     render() {
+//         return (
+//             <div>
+//                 <FruitProduct id={'Fruit01'} name={'Fruit'} />
+//                 <TeaProduct id={'Tea01'} name={'Tea'} />
+//                 <CandyProduct id={'Candy01'} name={'Candy'} />
+//             </div>
+//         );
+//     }
+// }
 
 export default ProductPage;

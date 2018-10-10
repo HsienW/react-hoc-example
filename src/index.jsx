@@ -4,9 +4,9 @@ import SimpleHOC from './Example/SimpleHOC';
 import GenderHOC from './Example/GenderHOC';
 import CombinationHOC from './Example/CombinationHOC';
 import UsedDecoratorHOC from './Example/UsedDecoratorHOC';
-import ShoppingSite from './Example/ShoppingSite';
 import ShoppingSiteUsedHOC from './Example/ShoppingSiteUsedHOC';
 import CallApiHOC from './Example/CallApiHOC';
+import * as ShoppingSite from './Example/ShoppingSite';
 
 
 ReactDOM.render(
@@ -15,7 +15,7 @@ ReactDOM.render(
         <GenderHOC />
         <CombinationHOC />
         <UsedDecoratorHOC />
-        <ShoppingSite />
+        <ShoppingSite.FruitsProduct />
         <ShoppingSiteUsedHOC />
         <CallApiHOC />
     </div>, document.getElementById('root'));

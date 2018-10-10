@@ -12,7 +12,7 @@ class Login extends Component {
 }
 
 // 以水果類當例子
-export default class FruitsProduct extends Component {
+class FruitsProduct extends Component {
     constructor(props) {
         super(props);
         this.state = {userToken: '', authPass: true, count: 1};
@@ -49,11 +49,11 @@ export default class FruitsProduct extends Component {
     };
 
     render() {
-        const props = {...this.props};
+        const {name} = this.props;
         if (!this.state.authPass) {return (<Login/>);} // 驗證不通過 回登入頁面
         return (
             <div>
-                <div>Name: {props.name}</div>
+                <div>Name: {name}</div>
                 <div>Number: {this.state.count}
                     <button onClick={this.addProduct}>+</button>
                     <button onClick={this.lessProduct}>-</button>
@@ -62,4 +62,27 @@ export default class FruitsProduct extends Component {
             </div>
         );
     }
+}
+// 多出一段單純元件的部分
+class PureFruitsProduct extends Component {
+    render() {
+        const {name} = this.props;
+        if (!this.state.authPass) {return (<Login/>);} // 驗證不通過 回登入頁面
+        return (
+            <div>
+                <div>Name: {name}</div>
+                <div>Number: {this.state.count}
+                    <button onClick={this.addProduct}>+</button>
+                    <button onClick={this.lessProduct}>-</button>
+                </div>
+                <button onClick={this.submitOrder}>Submit</button>
+            </div>
+        );
+    }
+}
+
+
+export {
+    FruitsProduct,
+    PureFruitsProduct
 }

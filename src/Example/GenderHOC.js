@@ -10,14 +10,16 @@ const UserGenderHOC = (gender) => (WrappedComponent) => {
         }
     }
 };
+
 // // 要傳入的元件
 class BaseComp extends Component {
     render() {
-        const props = {...this.props};
-        return (<div>Gender: {props.gender}</div>); // Gender: Male
+        const {gender} = this.props;
+        return (<div>Gender: {gender}</div>); // Gender: Male
     }
 }
+
 // 傳入參數並使用元件
-const Male =  UserGenderHOC('Male')(BaseComp);
+const Male = UserGenderHOC('Male')(BaseComp);
 
 export default Male;

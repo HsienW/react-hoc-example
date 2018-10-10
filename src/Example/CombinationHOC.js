@@ -30,12 +30,12 @@ const CountHOC = (WrappedComponent) => {
 // 使用者清單元件
 class UserComp extends Component {
     render() {
-        const props = {...this.props};
+        const {gender, count, incrementCount} = this.props;
         return (
             <div>
-                <div>Gender: {props.gender}</div>
-                <div>Number: {props.count}</div>
-                <button onClick={props.incrementCount}>Add Number</button>
+                <div>Gender: {gender}</div>
+                <div>Number: {count}</div>
+                <button onClick={incrementCount}>Add Number</button>
             </div>
         );
     }
